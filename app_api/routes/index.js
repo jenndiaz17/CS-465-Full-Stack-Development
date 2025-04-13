@@ -6,12 +6,15 @@ const tripsController = require('../controllers/trips');
 
 // Route to get all trips
 router
-  .route('/trips')
-  .get(tripsController.tripsList); // GET Method routes tripList
+.route('/trips')
+  .get(tripsController.tripsList)
+  .post(tripsController.tripsAddTrip);
 
-// Route to get one trip by tripCode
+
+// Route to get one trip by triFindBypCode
 router
-  .route('/trips/:tripCode')
-  .get(tripsController.tripsFindByCode); // GET Method with parameter
+.route('/trips/:tripCode')
+.get(tripsController.tripsFindByCode)
+.put(tripsController.tripsUpdateTrip); 
 
 module.exports = router;

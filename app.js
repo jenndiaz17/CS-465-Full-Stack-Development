@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors');
 
 
 
@@ -31,9 +32,17 @@ app.set('view engine', 'hbs');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Enable CORS
+app.use('/api', (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-Width, Content-Type, Accept');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  next();
+})
 
 // wire-up routes to controllers 
 app.use('/', indexRouter);
@@ -60,5 +69,5 @@ app.use(function(err, req, res, next) {
 module.exports = app;
 
 app.listen(3000, () => {
-  console.log('✅ Server is running at http://localhost:3000');
+  console.log(' Server is running at http://localhost:3000');
 });

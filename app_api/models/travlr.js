@@ -11,5 +11,5 @@ perPerson: { type: String, required: true },
 image: { type: String, required: true },  
 description: { type: String, required: true }  
 });  
-const Trip = mongoose.model('trips', tripSchema);  
-module.exports = Trip;
+
+module.exports = mongoose.models.trips || mongoose.model('trips', tripSchema);
