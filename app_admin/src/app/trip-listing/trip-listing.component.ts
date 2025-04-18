@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TripCardComponent } from '../trip-card/trip-card.component';
+import { AuthenticationService } from '../services/authentication.service';
 
 // Importing Trip Model and Data Service
 import { Trip } from '../models/trip';
@@ -25,7 +26,8 @@ export class TripListingComponent implements OnInit {
   //  Constructor with both services injected
   constructor(
     private tripDataService: TripDataService,
-    private router: Router
+    private router: Router,
+    private authenticationService: AuthenticationService
   ) {
     console.log('trip-listing constructor');
   }
@@ -52,6 +54,10 @@ export class TripListingComponent implements OnInit {
           console.log('Error: ' + error);
         }
       });
+  }
+
+  public isLoggedIn(): boolean {
+    return this.authenticationService.isLoggedIn();
   }
 
   //  Run once on component init
