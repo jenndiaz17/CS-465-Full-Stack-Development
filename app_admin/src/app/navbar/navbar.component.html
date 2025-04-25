@@ -1,25 +1,33 @@
-<nav class="navbar navbar-expand navbar-light bg-light">
-    <a class="navbar-brand" href="#">
-      <img src="/assets/images/logo.png" alt="Logo">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-            aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link active" routerLink="">Trips <span class="sr-only">(current)</span></a>
-      </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3 px-4">
+  <a class="navbar-brand text-light" routerLink="/">
+    <img src="/assets/images/logo.png" alt="Travlr Getaways Logo" height="40" class="me-2">
+    Travlr Getaways
+  </a>
+
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+          aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <!-- Left Side Navigation Links -->
+    <div class="navbar-nav me-auto">
+      <a class="nav-link text-light" routerLink="/travel">Travel</a>
+      <a class="nav-link text-light" routerLink="/rooms">Rooms</a>
+      <a class="nav-link text-light" routerLink="/feedback">Feedback</a>
+      <a class="nav-link text-light" routerLink="/faqs">FAQs</a>
     </div>
-  
-    <div class="navbar-end">
-      <a class="nav-item" routerLink="login" *ngIf="!isLoggedIn()">
-        <span class="has-icon-left">Log In</span>
-      </a>
-      <a class="nav-item active" (click)="onLogout()" *ngIf="isLoggedIn()">
-        <span class="has-icon-left">Log Out</span>
-      </a>
+
+    <!-- Right Side Auth Buttons -->
+    <div class="navbar-nav ms-auto">
+      <a class="nav-link text-light" routerLink="/register" *ngIf="!isLoggedIn()">Register</a>
+      <a class="nav-link text-light" routerLink="/login" *ngIf="!isLoggedIn()">Login</a>
+      
+      <!-- Fixed Logout Button with pointer -->
+      <button class="nav-link btn btn-link text-light" (click)="onLogout()" *ngIf="isLoggedIn()" title="Logout">
+        Logout
+      </button>
     </div>
-  </nav>
+  </div>
+</nav>

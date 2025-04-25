@@ -42,33 +42,34 @@ const tripsFindByCode = async (req, res) => {
 
 // POST: /trips - Add a new Trip
 const tripsAddTrip = async (req, res) => {
-  const newTrip = new Trip({
-    code: req.body.code,
-    name: req.body.name,
-    length: req.body.length,
-    start: req.body.start,
-    resort: req.body.resort,
-    perPerson: req.body.perPerson,
-    image: req.body.image,
-    description: req.body.description
+  getUser(req, res, async (req, res) => {
+    const newTrip = await Model.create({
+      code: req.body.code,
+      name: req.body.name,
+      length: req.body.length,
+      start: req.body.start,
+      resort: req.body.resort,
+      perPerson: req.body.perPerson,
+      image: req.body.image,
+      description: req.body.description
+    });
+
+    const q = await newTrip.save();
+
+    if (!q) {
+      return res
+        .status(400)
+        .json({ message: 'Failed to create trip' });
+    } else {
+      return res
+        .status(201) // Created
+        .json(q);
+    }
   });
-
-  const q = await newTrip.save();
-
-  if (!q) {
-    return res
-      .status(400)
-      .json({ message: 'Failed to create trip' });
-  } else {
-    return res
-      .status(201) // Created
-      .json(q);
-  }
 };
 
 // PUT: /trips/:tripCode - Update an existing Trip
 const tripsUpdateTrip = async (req, res) => {
-
   const q = await Model.findOneAndUpdate(
     { code: req.params.tripCode },
     {
@@ -87,7 +88,7 @@ const tripsUpdateTrip = async (req, res) => {
   if (!q) {
     return res
       .status(400)
-      .json(err);
+      .json({ message: 'Failed to update trip' });
   } else {
     return res
       .status(201)

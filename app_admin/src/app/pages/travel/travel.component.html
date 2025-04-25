@@ -1,0 +1,19 @@
+<div class="container mt-4">
+  <h2 class="mb-4">Travel Packages</h2>
+  <p>Here is a list of exciting travel destinations!</p>
+
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let trip of trips">
+      <div class="card h-100 shadow-sm">
+        <img [src]="trip.image" class="card-img-top" [alt]="trip.name" style="height: 200px; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">{{ trip.name }}</h5>
+          <p class="card-text"><strong>{{ trip.resort }}</strong></p>
+          <p>{{ trip.length }} · <strong>{{ trip.price }}</strong></p>
+          <p class="text-muted">{{ trip.description }}</p>
+          <button class="btn btn-primary w-100">Book Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

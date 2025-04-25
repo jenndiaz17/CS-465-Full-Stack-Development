@@ -21,7 +21,7 @@ export class TripDataService {
     @Inject(BROWSER_STORAGE) private storage: Storage
   ) {}
 
-  // ✅ Include token in requests requiring authentication
+  // 
   private getAuthHeaders() {
     const token = this.storage.getItem('travlr-token');
     return { Authorization: `Bearer ${token}` };
@@ -47,6 +47,12 @@ export class TripDataService {
 
   updateTrip(formData: Trip): Observable<Trip> {
     return this.http.put<Trip>(`${this.url}/${formData.code}`, formData, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+  deleteTrip(code: string): Observable<any> {
+    return this.http.delete(`${this.url}/${code}`, {
       headers: this.getAuthHeaders()
     });
   }

@@ -12,4 +12,8 @@ image: { type: String, required: true },
 description: { type: String, required: true }  
 });  
 
-module.exports = mongoose.models.trips || mongoose.model('trips', tripSchema);
+const Trip = mongoose.model('trips', tripSchema);
+module.exports = Trip;
+
+
+

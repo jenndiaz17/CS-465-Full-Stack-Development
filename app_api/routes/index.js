@@ -1,20 +1,28 @@
-const express = require('express'); // Express app
-const router = express.Router();    // Router logic
+const express = require('express'); 
+const router = express.Router(); 
+const { authenticateJWT } = require('../authenticateJWT');
+
+
 
 // Import the controller
 const tripsController = require('../controllers/trips');
+const authController = require('../controllers/authentication');
 
-// Route to get all trips
-router
-.route('/trips')
-  .get(tripsController.tripsList)
-  .post(tripsController.tripsAddTrip);
+router.route("/register").post(authController.register);
+router.route("/login").post(authController.login);
 
 
-// Route to get one trip by triFindBypCode
-router
-.route('/trips/:tripCode')
-.get(tripsController.tripsFindByCode)
-.put(tripsController.tripsUpdateTrip); 
+  // Route to get all trips
+  router
+  .route('/trips')
+    .get(tripsController.tripsList)
+    .post(authenticateJWT, tripsController.tripsAddTrip);
 
-module.exports = router;
+
+  // Route to get one trip by triFindBypCode
+  router
+  .route('/trips/:tripCode')
+  .get(tripsController.tripsFindByCode)
+  .put(authenticateJWT, tripsController.tripsUpdateTrip); 
+
+  module.exports = router;

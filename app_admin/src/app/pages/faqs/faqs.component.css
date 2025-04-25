@@ -1,0 +1,15 @@
+.accordion-button {
+    font-weight: 600;
+  }
+  .accordion-body {
+    font-size: 0.95rem;
+  }
+  :host {
+    display: block;
+    min-height: 100vh;
+    background-image: url('/assets/images/bg-pattern.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 2rem;
+  }

@@ -85,6 +85,21 @@ export class EditTripComponent implements OnInit {
       });
     }
   }
+  onDelete(): void {
+    const confirmed = confirm('Are you sure you want to delete this trip?');
+    if (confirmed && this.trip?.code) {
+      this.tripDataService.deleteTrip(this.trip.code).subscribe({
+        next: () => {
+          alert('Trip deleted successfully.');
+          this.router.navigate(['/']); // or your trip list route
+        },
+        error: (err) => {
+          console.error('Failed to delete trip:', err);
+        }
+      });
+    }
+  }
+  
 
   // get the form short name to access the form fields
   get f() {
