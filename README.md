@@ -1,6 +1,7 @@
 # Travlr Getaways Full Stack Application
 
-Architecture
+## **Architecture**
+
 In this project, I used two types of frontend development approaches. On the customer side, the app used static HTML and JavaScript rendered through Express.js. This allowed for quick development of server-rendered pages. On the administrative side, I used Angular to create a full single-page application (SPA). The SPA provided a smoother, more dynamic experience by updating content without reloading the page, which was especially useful for managing trips and editing forms in real time. On the backend, I chose to use a NoSQL MongoDB database because of its flexibility and scalability. MongoDB is ideal for storing dynamic, schema-less data like trip information and user accounts. Its JSON-like structure also makes it easy to work with when transferring data between the frontend and backend.
   #### app_admin (Frontend)
   
